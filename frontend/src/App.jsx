@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { Routes, Route, useNavigate, useMatch } from 'react-router-dom';
 import AppShell from './components/layout/AppShell';
 import CommandBar from './components/CommandBar';
-import { createJob } from './services/api';
+import { createJob, pingBackend } from './services/api';
 import JobStatus from './components/JobStatus';
 import ReportDashboard from './components/ReportDashboard';
 import { useOperationHistory } from './hooks/useOperationHistory';
@@ -156,6 +156,9 @@ function App() {
 
   // Global ⌘K / Ctrl+K listener
   useEffect(() => {
+    // Pre-warm backend on initial mount (prevents cold starts on Render)
+    pingBackend();
+
     const handler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();

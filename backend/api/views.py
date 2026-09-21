@@ -19,6 +19,21 @@ import time
 from django.db import close_old_connections
 from core_app.models import AnalysisJobStatus
 
+class HealthCheckView(APIView):
+    """
+    Lightweight health check endpoint for UptimeRobot, Render keep-alive,
+    and frontend pre-warming. Returns 200 OK instantly.
+    """
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        return Response({
+            "status": "healthy",
+            "service": "eden-backend",
+            "timestamp": time.time()
+        }, status=status.HTTP_200_OK)
+
 class DummyTask:
     def __init__(self):
         class Request:

@@ -59,3 +59,14 @@ export const uploadMedia = (file, analysisMode = 'text', onProgress = null) =>
     xhr.send(form);
   });
 
+/**
+ * Lightweight fire-and-forget pre-warming ping to wake up sleeping Render backends.
+ */
+export const pingBackend = async () => {
+  try {
+    await fetch(`${API_BASE}/health/`, { method: 'GET', cache: 'no-store' });
+  } catch {
+    // Silently ignore pre-warm connection attempts
+  }
+};
+

@@ -64,7 +64,7 @@ class GeminiProvider(BaseAnalysisProvider):
                 self.client = genai.Client(api_key=api_key)
         except ImportError:
             self.client = None
-        self.model_name = "gemini-2.5-flash"
+        self.model_name = "gemini-2.0-flash"
 
     def name(self) -> str:
         return "Gemini"
@@ -117,7 +117,7 @@ class GeminiProvider(BaseAnalysisProvider):
             
             # Cascade failover to highly available alternative Gemini models (each has its own separate quota)
             if "503" in err_str or "429" in err_str or "exhausted" in err_str.lower() or "overloaded" in err_str.lower():
-                fallback_models = ["gemini-2.5-flash-lite", "gemini-1.5-flash", "gemini-1.5-pro"]
+                fallback_models = ["gemini-2.0-flash-lite", "gemini-1.5-flash"]
                 for fallback_model in fallback_models:
                     logger.warning(f"Gemini {self.model_name} rate-limited/overloaded. Trying fallback: {fallback_model}...")
                     try:
