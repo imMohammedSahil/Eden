@@ -6,6 +6,7 @@ services:
     runtime: python3.11
     buildCommand: "cd backend && chmod +x build.sh && ./build.sh"
     startCommand: "cd backend && gunicorn core.wsgi:application --timeout 120 --workers 1"
+    healthCheckPath: /healthz
     envVars:
       - key: GUNICORN_CMD_ARGS
         value: "--timeout 120 --workers 1"

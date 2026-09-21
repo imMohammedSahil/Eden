@@ -29,7 +29,7 @@ def fetch_search_sources(query: str) -> list:
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
             }
         )
-        with urllib.request.urlopen(req, timeout=5) as response:
+        with urllib.request.urlopen(req, timeout=2) as response:
             html = response.read().decode('utf-8')
             
         try:
@@ -76,7 +76,7 @@ def fetch_search_sources(query: str) -> list:
                 headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
             )
             
-            with urllib.request.urlopen(yahoo_req, timeout=5) as yahoo_response:
+            with urllib.request.urlopen(yahoo_req, timeout=2) as yahoo_response:
                 yahoo_html = yahoo_response.read().decode('utf-8')
                 yahoo_soup = BeautifulSoup(yahoo_html, 'html.parser')
                 
@@ -179,16 +179,36 @@ def analyze_job_content(job_id: int):
                 report_data['transcript_results'] = transcript_asset.metadata
             
             # Fetch search verification references for claims
+            # Run in parallel with 3-claim cap to prevent blocking on cloud IP rate limits.
+            # Sequential searches could waste 50+ seconds; parallel caps total time at ~2s.
             claims_data = report_data.get('claims', [])
-            for claim_data in claims_data:
+            from concurrent.futures import ThreadPoolExecutor, as_completed
+
+            def _fetch_for_claim(claim_data):
                 search_q = claim_data.get('search_query', '')
-                sources = []
-                if search_q:
-                    try:
-                        sources = fetch_search_sources(search_q)
-                    except Exception as ex:
-                        logger.error(f"Failed to fetch sources for '{search_q}': {ex}")
+                if not search_q:
+                    claim_data['related_sources'] = []
+                    return claim_data
+                try:
+                    sources = fetch_search_sources(search_q)
+                except Exception as ex:
+                    logger.error(f"Failed to fetch sources for '{search_q}': {ex}")
+                    sources = []
                 claim_data['related_sources'] = sources
+                return claim_data
+
+            # Only search for the top 3 claims to limit total latency
+            searchable = [c for c in claims_data if c.get('search_query')][:3]
+            non_searchable = [c for c in claims_data if not c.get('search_query')]
+
+            # Kick off parallel searches
+            with ThreadPoolExecutor(max_workers=3) as executor:
+                list(executor.map(_fetch_for_claim, searchable))
+
+            # Mark remaining claims with empty sources
+            for claim_data in non_searchable:
+                claim_data['related_sources'] = []
+
 
             # Create Report
             report = AnalysisReport.objects.create(report_data=report_data)
