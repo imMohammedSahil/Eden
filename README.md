@@ -386,3 +386,7 @@ No license file is currently present in this repository. Add a `LICENSE` file (M
 **Designed & engineered for high-fidelity misinformation investigation 🌿**
 
 </div>
+
+## CI & Build Status
+[![Eden CI Pipeline](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml/badge.svg)](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml)
+
