@@ -28,3 +28,9 @@ dist/
 build/
 
 backend/config/cookies.txt
+# IDE & OS
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
