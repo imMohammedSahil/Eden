@@ -78,3 +78,16 @@ class AnalysisJobSerializer(serializers.ModelSerializer):
 class CreateAnalysisJobSerializer(serializers.Serializer):
     instagram_url = serializers.URLField()
     analysis_mode = serializers.ChoiceField(choices=['text', 'audio'], required=False, default='text')
+
+    def validate_instagram_url(self, value):
+        from urllib.parse import urlparse
+        parsed = urlparse(value)
+        hostname = (parsed.netloc or '').lower()
+        valid_domains = ('instagram.com', 'www.instagram.com', 'instagr.am', 'www.instagr.am')
+        if not any(hostname == d or hostname.endswith('.' + d) for d in ('instagram.com', 'instagr.am')):
+            raise serializers.ValidationError("URL must be a valid Instagram link (e.g., https://www.instagram.com/reel/...).")
+        
+        path = parsed.path.strip('/')
+        if not path:
+            raise serializers.ValidationError("Instagram URL must point to a specific post, reel, or video.")
+        return value
