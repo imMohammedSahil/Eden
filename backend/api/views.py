@@ -180,13 +180,24 @@ class UploadView(APIView):
             )
 
         analysis_mode = request.data.get('analysis_mode', 'text')
+        if analysis_mode not in ('text', 'audio'):
+            return Response(
+                {'error': f"Invalid analysis_mode '{analysis_mode}'. Must be 'text' or 'audio'."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         mode_mapping  = {'text': 'TEXT', 'audio': 'AUDIO'}
         analysis_type = mode_mapping.get(analysis_mode, 'TEXT')
+
+        # Sanitize filename for safe storage
+        import re
+        clean_name = re.sub(r'[^a-zA-Z0-9_.-]', '_', uploaded.name)
+        if not clean_name or clean_name.startswith('.'):
+            clean_name = f"upload_{int(time.time())}{ext}"
 
         try:
             job = AnalysisJob.objects.create(
                 instagram_url=None,
-                original_filename=uploaded.name,
+                original_filename=clean_name,
                 ingestion_source='UPLOAD',
                 analysis_type=analysis_type,
             )
