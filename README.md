@@ -1,40 +1,37 @@
-<div align="center">
+# Eden
+
+**Forensic OSINT engine for short-form video misinformation detection.**
+
+[![CI](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml/badge.svg)](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Django REST 3.14](https://img.shields.io/badge/DRF-3.14-092E20?logo=django&logoColor=white)](https://www.django-rest-framework.org/)
+[![Celery 5.6](https://img.shields.io/badge/celery-5.6-37814A?logo=celery&logoColor=white)](https://docs.celeryq.dev/)
+[![React 19](https://img.shields.io/badge/react-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+Eden ingests Instagram Reels and video uploads, extracts frames via OpenCV, transcribes audio with Whisper, runs OCR with EasyOCR, and verifies factual claims against live web sources using Gemini 2.5 Flash — orchestrated through an asynchronous Django + Celery + Redis pipeline.
+
+[Problem statement](#1-problem-statement--engineering-posture) · [Architecture](#2-pipeline-architecture) · [Fallback cascade](#4-ai-reasoning--multi-tier-fallback-cascade) · [API](#6-database-model--rest-api-contracts) · [Deployment](#7-deployment--local-orchestration)
+
+<details>
+<summary>ASCII wordmark</summary>
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                               │
-│    ███████╗██████╗ ███████╗███╗   ██╗                                        │
-│    ██╔════╝██╔══██╗██╔════╝████╗  ██║                                        │
-│    █████╗  ██║  ██║█████╗  ██╔██╗ ██║                                        │
-│    ██╔══╝  ██║  ██║██╔══╝  ██║╚██╗██║                                        │
-│    ███████╗██████╔╝███████╗██║ ╚████║                                        │
-│    ╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═══╝                                        │
-│                                                                               │
-│    ─────────────────────────────────────────────────────────────────────      │
-│    system   : Forensic OSINT & Multimodal Verification Engine                 │
-│    runtime  : Python 3.11 · Django 4.2 · Celery 5.6 · React 19               │
-│    AI stack : Gemini 2.5 Flash → HuggingFace → Offline Heuristic             │
-│    ingest   : yt-dlp → Instaloader → Playwright  (3-layer cascade)            │
-│    latency  : 12 s – 25 s end-to-end  ·  < 50 ms cache hit                   │
-│    memory   : < 180 MB resident  (free-tier safe)                             │
-│    ─────────────────────────────────────────────────────────────────────      │
-│                                                                               │
-└─────────────────────────────────────────────────────────────────────────────┘
+███████╗██████╗ ███████╗███╗   ██╗
+██╔════╝██╔══██╗██╔════╝████╗  ██║
+█████╗  ██║  ██║█████╗  ██╔██╗ ██║
+██╔══╝  ██║  ██║██╔══╝  ██║╚██╗██║
+███████╗██████╔╝███████╗██║ ╚████║
+╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═══╝
+FORENSIC OSINT ENGINE
 ```
 
-> *"Cold Intelligence for a Hot Information War"*
+</details>
 
-![Python](https://img.shields.io/badge/Python-3.11-black?style=flat-square&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-4.2-black?style=flat-square&logo=django&logoColor=white)
-![Celery](https://img.shields.io/badge/Celery-5.6-black?style=flat-square&logo=celery&logoColor=white)
-![React](https://img.shields.io/badge/React-19-black?style=flat-square&logo=react&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-7-black?style=flat-square&logo=redis&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-AI-black?style=flat-square&logo=google&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-black?style=flat-square)
-
-**[Problem](#1-problem-statement--engineering-posture)** · **[Pipeline](#2-pipeline-architecture)** · **[Subsystems](#3-pipeline-subsystems)** · **[AI Cascade](#4-ai-reasoning--multi-tier-fallback-cascade)** · **[Web Grounding](#5-bounded-parallel-web-grounding-engine)** · **[API](#6-database-model--rest-api-contracts)** · **[Deploy](#7-deployment--local-orchestration)**
-
-</div>
+<!-- Hero banner — uncomment when screenshot is available
+![Eden hero banner](docs/assets/eden_hero_banner.png)
+*Terminal-style hero visual.*
+-->
 
 ---
 
