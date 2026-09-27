@@ -1,33 +1,38 @@
 <div align="center">
 
 ```
-┌──────────────────────────────────────────────────────────────────────┐
-│                                                                        │
-│   ███████╗██████╗ ███████╗███╗   ██╗                                 │
-│   ██╔════╝██╔══██╗██╔════╝████╗  ██║                                 │
-│   █████╗  ██║  ██║█████╗  ██╔██╗ ██║                                 │
-│   ██╔══╝  ██║  ██║██╔══╝  ██║╚██╗██║                                 │
-│   ███████╗██████╔╝███████╗██║ ╚████║                                 │
-│   ╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═══╝                                 │
-│                                                                        │
-│              F O R E N S I C   O S I N T   E N G I N E                │
-│                                                                        │
-└──────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                               │
+│    ███████╗██████╗ ███████╗███╗   ██╗                                        │
+│    ██╔════╝██╔══██╗██╔════╝████╗  ██║                                        │
+│    █████╗  ██║  ██║█████╗  ██╔██╗ ██║                                        │
+│    ██╔══╝  ██║  ██║██╔══╝  ██║╚██╗██║                                        │
+│    ███████╗██████╔╝███████╗██║ ╚████║                                        │
+│    ╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═══╝                                        │
+│                                                                               │
+│    ─────────────────────────────────────────────────────────────────────      │
+│    system   : Forensic OSINT & Multimodal Verification Engine                 │
+│    runtime  : Python 3.11 · Django 4.2 · Celery 5.6 · React 19               │
+│    AI stack : Gemini 2.5 Flash → HuggingFace → Offline Heuristic             │
+│    ingest   : yt-dlp → Instaloader → Playwright  (3-layer cascade)            │
+│    latency  : 12 s – 25 s end-to-end  ·  < 50 ms cache hit                   │
+│    memory   : < 180 MB resident  (free-tier safe)                             │
+│    ─────────────────────────────────────────────────────────────────────      │
+│                                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-![Eden hero banner](docs/assets/eden_hero_banner.png)
-*Terminal-style hero visual — replace with a real capture once available.*
+> *"Cold Intelligence for a Hot Information War"*
 
-**Asynchronous media forensics pipeline for short-form video misinformation detection.**
+![Python](https://img.shields.io/badge/Python-3.11-black?style=flat-square&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-4.2-black?style=flat-square&logo=django&logoColor=white)
+![Celery](https://img.shields.io/badge/Celery-5.6-black?style=flat-square&logo=celery&logoColor=white)
+![React](https://img.shields.io/badge/React-19-black?style=flat-square&logo=react&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-7-black?style=flat-square&logo=redis&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-AI-black?style=flat-square&logo=google&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-black?style=flat-square)
 
-[![CI](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml/badge.svg)](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.11%2B-0d0d0d?style=for-the-badge&logo=python&logoColor=3776AB)
-![Django REST](https://img.shields.io/badge/DRF-3.14-0d0d0d?style=for-the-badge&logo=django&logoColor=092E20)
-![Celery](https://img.shields.io/badge/celery-5.3-0d0d0d?style=for-the-badge&logo=celery&logoColor=37814A)
-![React](https://img.shields.io/badge/react-18.3-0d0d0d?style=for-the-badge&logo=react&logoColor=61DAFB)
-![License](https://img.shields.io/badge/license-MIT-0d0d0d?style=for-the-badge)
-
-[Problem](#1-problem-statement--engineering-posture) · [Architecture](#3-pipeline-subsystems) · [Fallback Cascade](#4-ai-reasoning--multi-tier-fallback-cascade) · [Frontend](#6-interactive-osint-frontend) · [API](#7-database-model--rest-api-contracts) · [Deployment](#8-deployment--local-orchestration)
+**[Problem](#1-problem-statement--engineering-posture)** · **[Pipeline](#2-pipeline-architecture)** · **[Subsystems](#3-pipeline-subsystems)** · **[AI Cascade](#4-ai-reasoning--multi-tier-fallback-cascade)** · **[Web Grounding](#5-bounded-parallel-web-grounding-engine)** · **[API](#6-database-model--rest-api-contracts)** · **[Deploy](#7-deployment--local-orchestration)**
 
 </div>
 
