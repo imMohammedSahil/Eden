@@ -2,12 +2,14 @@
 
 **Forensic OSINT engine for short-form video misinformation detection.**
 
-[![CI](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml/badge.svg)](https://github.com/imMohammedSahil/Eden/actions/workflows/ci.yml)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Django REST 3.14](https://img.shields.io/badge/DRF-3.14-092E20?logo=django&logoColor=white)](https://www.django-rest-framework.org/)
-[![Celery 5.6](https://img.shields.io/badge/celery-5.6-37814A?logo=celery&logoColor=white)](https://docs.celeryq.dev/)
-[![React 19](https://img.shields.io/badge/react-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+| layer | technology |
+|---|---|
+| backend | `python 3.11` · `django 4.2` · `django-rest-framework 3.14` · `celery 5.6` · `redis 7` |
+| AI | `gemini-2.5-flash` → `llama-3-8b` · `mistral-7b` → offline heuristic |
+| ingestion | `yt-dlp` → `instaloader` → `playwright` |
+| processing | `opencv` · `ffmpeg` · `whisper` · `easyocr` |
+| frontend | `react 19` · `vite` · `framer-motion` · `tailwind 4` |
+| infra | `postgresql` · `docker` · `render` · `MIT license` |
 
 Eden ingests Instagram Reels and video uploads, extracts frames via OpenCV, transcribes audio with Whisper, runs OCR with EasyOCR, and verifies factual claims against live web sources using Gemini 2.5 Flash — orchestrated through an asynchronous Django + Celery + Redis pipeline.
 
