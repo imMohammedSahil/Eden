@@ -40,10 +40,10 @@
 3. [Pipeline Subsystems](#3-pipeline-subsystems)
 4. [AI Reasoning & Multi-Tier Fallback Cascade](#4-ai-reasoning--multi-tier-fallback-cascade)
 5. [Bounded Parallel Web Grounding Engine](#5-bounded-parallel-web-grounding-engine)
-7. [Database Model & REST API Contracts](#7-database-model--rest-api-contracts)
-8. [Deployment & Local Orchestration](#8-deployment--local-orchestration)
-9. [Project Structure](#9-project-structure)
-10. [Contributors & License](#10-contributors--license)
+6. [Database Model & REST API Contracts](#6-database-model--rest-api-contracts)
+7. [Deployment & Local Orchestration](#7-deployment--local-orchestration)
+8. [Project Structure](#8-project-structure)
+9. [Contributors & License](#9-contributors--license)
 
 ---
 
@@ -181,7 +181,7 @@ Only the top 3 claims per job are sent for parallel grounding; this bounds end-t
 
 ---
 
-## 7. Database Model & REST API Contracts
+## 6. Database Model & REST API Contracts
 
 ### Entity Relationship Diagram
 
@@ -304,7 +304,7 @@ file: <binary>, mode: "video"
 
 ---
 
-## 8. Deployment & Local Orchestration
+## 7. Deployment & Local Orchestration
 
 Four terminals, run independently.
 
@@ -370,7 +370,7 @@ Cross-check this list against `.env.example` in the repository root — treat it
 
 ---
 
-## 9. Project Structure
+## 8. Project Structure
 
 ```
 Eden/
@@ -389,7 +389,7 @@ Eden/
 │       ├── services/        # REST client layer
 │       └── views/             # Page-level containers
 ├── docs/
-│   ├── assets/             # README images — see Section 6
+│   ├── assets/             # README images (screenshots — coming soon)
 │   └── developer_logs/
 ├── docker-compose.yml
 └── render.yaml
@@ -397,7 +397,7 @@ Eden/
 
 ---
 
-## 10. Contributors & License
+## 9. Contributors & License
 
 | Contributor | Focus |
 |---|---|
