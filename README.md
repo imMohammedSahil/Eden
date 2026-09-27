@@ -87,14 +87,14 @@ flowchart TD
     DB -->|Poll / push| UI["React Dashboard"]
     UI -->|Status polling, actions| API
 
-    style U fill:#0d0d0d,stroke:#00c2ff,color:#00c2ff
-    style API fill:#0d0d0d,stroke:#00c2ff,color:#00c2ff
-    style DB fill:#0d0d0d,stroke:#ffb800,color:#ffb800
-    style REDIS fill:#0d0d0d,stroke:#ffb800,color:#ffb800
-    style ORCH fill:#0d0d0d,stroke:#ff2b4d,color:#ff2b4d
-    style REPORT fill:#0d0d0d,stroke:#00c2ff,color:#00c2ff
-    style HEURISTIC fill:#0d0d0d,stroke:#5a5a5a,color:#aaaaaa
-    style UI fill:#0d0d0d,stroke:#00c2ff,color:#00c2ff
+    style U fill:#000000,stroke:#444444,color:#ffffff
+    style API fill:#000000,stroke:#444444,color:#ffffff
+    style DB fill:#000000,stroke:#444444,color:#ffffff
+    style REDIS fill:#000000,stroke:#444444,color:#ffffff
+    style ORCH fill:#000000,stroke:#444444,color:#ffffff
+    style REPORT fill:#000000,stroke:#444444,color:#ffffff
+    style HEURISTIC fill:#000000,stroke:#444444,color:#ffffff
+    style UI fill:#000000,stroke:#444444,color:#ffffff
 ```
 
 Every stage after job creation runs off the request/response cycle. The API's only synchronous responsibilities are validating the submission, writing the `AnalysisJob` row, and enqueueing the Celery task chain; everything from ingestion through verdict assembly happens on the worker pool, with the frontend polling job status rather than holding a connection open.
