@@ -413,12 +413,3 @@ Eden/
 
 The repository ships a `LICENSE` file at the root — confirm its terms (MIT is referenced across project docs) and link to it directly rather than restating terms here.
 
----
-
-<div align="center">
-
-**Star history**
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Arnim-Zola/Eden&type=Date)](https://star-history.com/#Arnim-Zola/Eden&Date)
-
-</div>
