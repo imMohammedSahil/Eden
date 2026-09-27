@@ -184,6 +184,15 @@ Only the top 3 claims per job are sent for parallel grounding; this bounds end-t
 
 ## 6. Interactive OSINT Frontend
 
+> 📸 **Screenshots coming soon** — real UI captures will be added here once available.
+
+<!-- ============================================================
+     SECTION 6 — SCREENSHOTS (commented out, pending real images)
+     ============================================================
+     Uncomment and fill in the image paths below once screenshots
+     are captured and added to docs/assets/.
+     ============================================================
+
 The dashboard is a set of independent panels rather than a single monolithic report view, so each subsystem's output — vision, audio, network, telemetry — has a dedicated visualization surface.
 
 ### Forensic Dossier Dashboard
@@ -206,16 +215,15 @@ The dashboard is a set of independent panels rather than a single monolithic rep
 ![Telemetry HUD](docs/assets/telemetry_hud.png)
 *Floating console reporting Celery worker heartbeat, CPU/memory usage, and live execution logs during an in-flight job.*
 
-To populate these, create `docs/assets/` at the repository root and add:
+Recommended image dimensions for docs/assets/:
 
-```
-docs/assets/
-├── eden_hero_banner.png       1200x500  — hero / header visual
-├── dossier_dashboard.png      1200x650  — forensic dossier bento grid
-├── relationship_graph.png     1000x550  — entity relationship graph
-├── audio_spectrogram.png      1000x450  — acoustic spectrogram
-└── telemetry_hud.png          1000x450  — telemetry / worker HUD
-```
+    eden_hero_banner.png       1200x500  — hero / header visual
+    dossier_dashboard.png      1200x650  — forensic dossier bento grid
+    relationship_graph.png     1000x550  — entity relationship graph
+    audio_spectrogram.png      1000x450  — acoustic spectrogram
+    telemetry_hud.png          1000x450  — telemetry / worker HUD
+
+============================================================ -->
 
 ---
 
