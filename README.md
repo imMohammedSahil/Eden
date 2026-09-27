@@ -40,7 +40,6 @@
 3. [Pipeline Subsystems](#3-pipeline-subsystems)
 4. [AI Reasoning & Multi-Tier Fallback Cascade](#4-ai-reasoning--multi-tier-fallback-cascade)
 5. [Bounded Parallel Web Grounding Engine](#5-bounded-parallel-web-grounding-engine)
-6. [Interactive OSINT Frontend](#6-interactive-osint-frontend)
 7. [Database Model & REST API Contracts](#7-database-model--rest-api-contracts)
 8. [Deployment & Local Orchestration](#8-deployment--local-orchestration)
 9. [Project Structure](#9-project-structure)
@@ -179,51 +178,6 @@ ThreadPoolExecutor(max_workers=3)
 Only the top 3 claims per job are sent for parallel grounding; this bounds end-to-end grounding latency to roughly 2 seconds against a sequential baseline that scales past 45 seconds for a claim-heavy transcript.
 
 **Search path.** Primary retrieval is a DuckDuckGo HTML scrape with regex-based URL sanitization. On a CAPTCHA or rate-limit response, retrieval falls back to Yahoo Search automatically — the same layered-fallback pattern used in ingestion, applied here to the grounding step.
-
----
-
-## 6. Interactive OSINT Frontend
-
-> 📸 **Screenshots coming soon** — real UI captures will be added here once available.
-
-<!-- ============================================================
-     SECTION 6 — SCREENSHOTS (commented out, pending real images)
-     ============================================================
-     Uncomment and fill in the image paths below once screenshots
-     are captured and added to docs/assets/.
-     ============================================================
-
-The dashboard is a set of independent panels rather than a single monolithic report view, so each subsystem's output — vision, audio, network, telemetry — has a dedicated visualization surface.
-
-### Forensic Dossier Dashboard
-
-![Forensic dossier dashboard](docs/assets/dossier_dashboard.png)
-*Bento-grid layout: threat index gauge, two-sentence rationale, and per-claim evidence cards with source attribution.*
-
-### Entity Relationship Graph
-
-![Entity relationship graph](docs/assets/relationship_graph.png)
-*Spring-physics network graph connecting the media asset node to its active extraction pipelines (OCR, Whisper) and the claims each one produced, with live citation edges to grounding sources.*
-
-### Acoustic Waveform Spectrogram
-
-![Audio spectrogram](docs/assets/audio_spectrogram.png)
-*Canvas-rendered frequency spectrogram with interactive timestamp markers aligned to Whisper segment boundaries, and a scrubber for direct playback-to-transcript navigation.*
-
-### Telemetry HUD
-
-![Telemetry HUD](docs/assets/telemetry_hud.png)
-*Floating console reporting Celery worker heartbeat, CPU/memory usage, and live execution logs during an in-flight job.*
-
-Recommended image dimensions for docs/assets/:
-
-    eden_hero_banner.png       1200x500  — hero / header visual
-    dossier_dashboard.png      1200x650  — forensic dossier bento grid
-    relationship_graph.png     1000x550  — entity relationship graph
-    audio_spectrogram.png      1000x450  — acoustic spectrogram
-    telemetry_hud.png          1000x450  — telemetry / worker HUD
-
-============================================================ -->
 
 ---
 
